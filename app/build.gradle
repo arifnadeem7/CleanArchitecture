@@ -39,9 +39,6 @@ dependencies {
     })
     compile "com.android.support:appcompat-v7:${supportLibVersion}"
     compile "com.android.support:design:${supportLibVersion}"
-    compile 'com.android.support.constraint:constraint-layout:1.0.1'
-
-    //Image rendering
 
     //Retrofit
     compile "com.squareup.retrofit2:retrofit:${retrofitVersion}"
