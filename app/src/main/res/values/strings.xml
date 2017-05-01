@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">CleanArchitecture</string>
+    <string name="action_search">Search</string>
+    <string name="search_by_title">Search by title</string>
+    <string name="movie">Movie</string>
+    <string name="error_min_char_limit">Please enter a title which is greater than 2 chars.</string>
+    <string name="error_unknown">An unkown error occured!</string>
+    <string name="error_network">An network error occured!</string>
+    <string name="imdb_rating">IMDB Rating</string>
+    <string name="plot">Plot</string>
+    <string name="no_title">Title not available</string>
+    <string name="no_rating">Rating not available</string>
+    <string name="no_plot">Plot not available</string>
+</resources>
