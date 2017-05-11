@@ -1,7 +1,5 @@
 package com.arif.cleanarchitecture.presenters.interactors;
 
-import android.content.res.Resources;
-
 import com.arif.cleanarchitecture.network.api.OmdbApiObservables;
 import com.arif.cleanarchitecture.network.api.RxSingleSubscriberEvents;
 import com.arif.cleanarchitecture.network.response.Movie;
@@ -62,7 +60,7 @@ public class GetMovieInteractor extends BaseInteractor<Movie> implements GetMovi
                 mRealm.commitTransaction();
                 showGetMovieSuccess(movie);
             } else
-                showGetMovieError(new Resources.NotFoundException("Movie not found"));
+                showGetMovieError(new Exception("Movie not found"));
         }
     }
 
