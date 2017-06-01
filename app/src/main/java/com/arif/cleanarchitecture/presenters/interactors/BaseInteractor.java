@@ -29,7 +29,7 @@ import io.reactivex.disposables.Disposable;
  * limitations under the License.
  */
 
-public abstract class BaseInteractor<T> {
+public abstract class BaseInteractor {
 
     private static final String TAG = BaseInteractor.class.getSimpleName();
 
@@ -44,13 +44,13 @@ public abstract class BaseInteractor<T> {
      *
      * @param updateListener
      */
-    public void subscribeView(BasePresenterContract updateListener) {
+    public void subscribePresenterView(BasePresenterContract updateListener) {
         final BasePresenterContract previousListener = presenterContract;
         if (previousListener != null) {
             throw new IllegalStateException("A view was already bound to this listener, please unbind it before binding any other view = " + previousListener);
         }
         presenterContract = updateListener;
-        Logger.e(TAG, "subscribeView");
+        Logger.e(TAG, "subscribePresenterView");
     }
 
     /**
@@ -59,7 +59,7 @@ public abstract class BaseInteractor<T> {
      * @param updateListener
      * @return
      */
-    public boolean wasSubscribed(BasePresenterContract updateListener) {
+    public boolean wasPresenterViewSubscribed(BasePresenterContract updateListener) {
         if (updateListener != null) {
             if (presenterContract == null)
                 return false;
@@ -74,7 +74,7 @@ public abstract class BaseInteractor<T> {
      *
      * @param updateListener
      */
-    public void unsubscribeView(BasePresenterContract updateListener) {
+    public void unsubscribePresenterView(BasePresenterContract updateListener) {
         final BasePresenterContract previousListener = presenterContract;
         if (previousListener == updateListener) {
             this.presenterContract = null;
@@ -82,7 +82,7 @@ public abstract class BaseInteractor<T> {
             throw new IllegalStateException("No such listener was bound previously.");
         }
         clearSubscriptionQueue();
-        Logger.e(TAG, "unsubscribeView");
+        Logger.e(TAG, "unsubscribePresenterView");
     }
 
     public BasePresenterContract getPresenterContract() {

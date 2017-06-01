@@ -1,16 +1,9 @@
 package com.arif.cleanarchitecture.network.api;
 
 import com.arif.cleanarchitecture.network.response.Movie;
+import com.arif.cleanarchitecture.utils.RxUtils;
 
-import io.reactivex.Observable;
-import io.reactivex.ObservableSource;
-import io.reactivex.ObservableTransformer;
 import io.reactivex.Single;
-import io.reactivex.SingleSource;
-import io.reactivex.SingleTransformer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.annotations.NonNull;
-import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by arifnadeem on 3/21/17.
@@ -34,28 +27,8 @@ public class OmdbApiObservables {
 
     private OmdbRestApi mOmdbRestApi = RetrofitProvider.getInstance().provideApi();
 
-    <T> ObservableTransformer<T, T> applyCommonSchedulers() {
-        return new ObservableTransformer<T, T>() {
-            @Override
-            public ObservableSource<T> apply(@NonNull Observable<T> upstream) {
-                return upstream.subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread());
-            }
-        };
-    }
-
-    <T> SingleTransformer<T, T> applyCommonSchedulersSingle() {
-        return new SingleTransformer<T, T>() {
-            @Override
-            public SingleSource<T> apply(@NonNull Single<T> upstream) {
-                return upstream.subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread());
-            }
-        };
-    }
-
     public Single<Movie> getMovieForTitle(String title, String type) {
-        return mOmdbRestApi.getMovie(title, "short", type, "json").compose(this.<Movie>applyCommonSchedulersSingle());
+        return mOmdbRestApi.getMovie(title, "short", type, "json").compose(RxUtils.<Movie>applyCommonSchedulersSingle());
     }
 
 }

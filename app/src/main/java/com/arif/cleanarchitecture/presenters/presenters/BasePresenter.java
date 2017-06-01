@@ -22,13 +22,12 @@ import com.arif.cleanarchitecture.utils.Logger;
  * limitations under the License.
  *
  * @param <V> View to be attached
- * @param <M> Model to be got from Server or DB
  */
 
-public abstract class BasePresenter<V, M> {
+public abstract class BasePresenter<V> {
 
     private V viewContract;
-    private BaseInteractor<M> mBaseInteractor;
+    private BaseInteractor mBaseInteractor;
     private BasePresenterContract mInteractorContract;
 
     /**
@@ -45,8 +44,8 @@ public abstract class BasePresenter<V, M> {
             throw new IllegalStateException("A view was already bound to this listener, please unbind it before binding any other view = " + previousListener);
         }
         viewContract = updateListener;
-        mBaseInteractor.subscribeView(mInteractorContract);
-        Logger.e(BasePresenter.class.getSimpleName(), "subscribeView");
+        mBaseInteractor.subscribePresenterView(mInteractorContract);
+        Logger.e(BasePresenter.class.getSimpleName(), "subscribePresenterView");
     }
 
     /**
@@ -77,11 +76,11 @@ public abstract class BasePresenter<V, M> {
         } else {
             throw new IllegalStateException("No such listener was bound previously.");
         }
-        mBaseInteractor.unsubscribeView(mInteractorContract);
-        Logger.e(BasePresenter.class.getSimpleName(), "unsubscribeView");
+        mBaseInteractor.unsubscribePresenterView(mInteractorContract);
+        Logger.e(BasePresenter.class.getSimpleName(), "unsubscribePresenterView");
     }
 
-    public void subscribeInteractor(BaseInteractor<M> interactor, BasePresenterContract contract) {
+    public void subscribeInteractor(BaseInteractor interactor, BasePresenterContract contract) {
         mBaseInteractor = interactor;
         mInteractorContract = contract;
     }

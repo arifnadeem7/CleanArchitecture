@@ -29,7 +29,7 @@ import retrofit2.HttpException;
  * limitations under the License.
  */
 
-public class GetMovieInteractor extends BaseInteractor<Movie> implements GetMovieContract.ApiContract, RxSingleSubscriberEvents<Movie> {
+public class GetMovieInteractor extends BaseInteractor implements GetMovieContract.ApiContract, RxSingleSubscriberEvents<Movie> {
 
     private final OmdbApiObservables mOmdbApiObservables;
     private final Realm mRealm;

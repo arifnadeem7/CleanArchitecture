@@ -24,7 +24,7 @@ import io.realm.Realm;
  * limitations under the License.
  */
 
-public class GetMoviePresenter extends BasePresenter<GetMovieContract.View, Movie> implements GetMovieContract.Presenter<Movie> {
+public class GetMoviePresenter extends BasePresenter<GetMovieContract.View> implements GetMovieContract.Presenter<Movie> {
 
     private GetMovieInteractor mGetMovieInteractor;
 
